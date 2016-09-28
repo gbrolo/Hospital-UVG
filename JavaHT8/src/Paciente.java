@@ -23,6 +23,8 @@ public class Paciente implements Comparable<Paciente>{
 		return this.getPrioridad().compareTo(otro.getPrioridad());
 	}
 	
-	
+	public String toString(){
+		return this.getNombre() + ", " + this.getEnfermedad() + ", " + this.getPrioridad();
+	}
 
 }
