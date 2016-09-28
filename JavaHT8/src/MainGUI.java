@@ -27,24 +27,33 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+/**
+ * Ejecuta la aplicacion. Crea el programa para gestionar la atencion de la emergencia de un Hospital.
+ * Permite cargar un archivo de texto con las fichas de cada paciente, para luego determinar el orden
+ * de atencion de los mismos de acuerdo a su situacion.
+ * 
+ * @author Gabriel Brolo 15105, Jose Luis Mendez 15024
+ * @version 1.0.0
+ */
 public class MainGUI extends JFrame {
-	
+	/* Atributos */
 	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
-	private DefaultListModel<String> listModel;
-	private ArrayList<String> pacientesIn;
-	private ArrayList<Paciente> pacienteList;
+	private DefaultListModel<String> listModel; // Para el JScrollPanel
+	private ArrayList<String> pacientesIn; // Para guardar los datos del archivo de texto
+	private ArrayList<Paciente> pacienteList; // Para guardar los pacientes
 	
-	private String qType;
+	private String qType; // tipo de PriorityQueue, vector o jcf
 	
 	/**
 	 * Crea el Frame.
 	 */
 	public MainGUI() {
 		
-		qType = "JCF";
+		qType = "JCF"; // jcf queue primera opcion
 		
+		/* JFrame */
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 400);
 		contentPane = new JPanel();
@@ -63,6 +72,7 @@ public class MainGUI extends JFrame {
 		lblTitle.setBounds(21, 12, 440, 36);
 		pnlMain.add(lblTitle);
 		
+		/* -------------------- CARGAR DATOS DEL ARCHIVO DE TEXTO -------------------- */
 		JButton btnCargarFichas = new JButton("Cargar fichas");
 		btnCargarFichas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -77,8 +87,8 @@ public class MainGUI extends JFrame {
 						FileInputStream fstream = new FileInputStream(fc.getSelectedFile().getAbsolutePath());
 						BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 						
-						pacientesIn = new ArrayList<String>();
-						pacienteList = new ArrayList<Paciente>();
+						pacientesIn = new ArrayList<String>(); // guardar lineas
+						pacienteList = new ArrayList<Paciente>(); // guardar pacientes
 						
 						String strLine;
 						while((strLine = br.readLine()) != null){
@@ -104,6 +114,7 @@ public class MainGUI extends JFrame {
 		btnCargarFichas.setBounds(12, 60, 135, 25);
 		pnlMain.add(btnCargarFichas);
 		
+		/* ------ UTILIZAR PRIORITY QUEUE PARA MOSTRAR DATOS EN PANTALLA SEGUN PRIORIDAD ------*/
 		JButton btnMostrarPrioridadDe = new JButton("Mostrar prioridad de atencion");
 		btnMostrarPrioridadDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -111,9 +122,9 @@ public class MainGUI extends JFrame {
 				try{
 					listModel.removeAllElements();
 					if(qType.equals("JCF")){
-						jcfQueue();
+						jcfQueue(); // utilizar priority queue del jcf
 					} else if(qType.equals("VECTOR")){
-						vectorQueue();
+						vectorQueue(); // utilizar implementaion del priority queue con vector
 					}
 				} catch (Exception j){
 					JOptionPane.showMessageDialog(null, "No ha cargado un archivo .txt");
@@ -124,16 +135,19 @@ public class MainGUI extends JFrame {
 		btnMostrarPrioridadDe.setBounds(221, 60, 249, 25);
 		pnlMain.add(btnMostrarPrioridadDe);
 		
+		/* LIST MODEL */
 		listModel = new DefaultListModel<>();
 		JList<String> listaPacientes = new JList<>(listModel);
         listaPacientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaPacientes.setLayoutOrientation(JList.VERTICAL);
 		
+        /* PANEL PARA MOSTRAR INFO */
 		JScrollPane pnlShowData = new JScrollPane();
 		pnlShowData.setBounds(12, 127, 458, 218);
 		pnlShowData.setViewportView(listaPacientes);
 		pnlMain.add(pnlShowData);
 		
+		/* RADIO BUTTONS para seleccionar priority queue */
 		JRadioButton rdbtnJCF = new JRadioButton("JCF Priority Queue");
 		rdbtnJCF.setSelected(true);
 		rdbtnJCF.addActionListener(new ActionListener() {
@@ -142,7 +156,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 		rdbtnJCF.setBackground(Color.WHITE);
-		rdbtnJCF.setBounds(12, 92, 135, 23);
+		rdbtnJCF.setBounds(12, 92, 205, 23);
 		pnlMain.add(rdbtnJCF);
 		
 		JRadioButton rdbtnVectorPriorityQueue = new JRadioButton("Vector Priority Queue");
@@ -152,14 +166,19 @@ public class MainGUI extends JFrame {
 			}
 		});
 		rdbtnVectorPriorityQueue.setBackground(Color.WHITE);
-		rdbtnVectorPriorityQueue.setBounds(149, 92, 161, 23);
+		rdbtnVectorPriorityQueue.setBounds(221, 93, 249, 23);
 		pnlMain.add(rdbtnVectorPriorityQueue);
 		
+		/* Button Group */
 		ButtonGroup qGroup = new ButtonGroup();
 		qGroup.add(rdbtnJCF);
 		qGroup.add(rdbtnVectorPriorityQueue);
 	}
 	
+	/**
+	 * Utiliza la implementacion del PriorityQueue del JCF para mostrar en pantalla la lista de pacientes segun
+	 * la prioridad.
+	 */
 	public void jcfQueue(){
 		PriorityQueue<Paciente> pQueue = new PriorityQueue<Paciente>();
 		
@@ -172,6 +191,10 @@ public class MainGUI extends JFrame {
 		}
 	}
 	
+	/**
+	 * Utiliza la implementacion del PriorityQueue: VectorHeap para mostrar en pantalla la lista de pacientes segun
+	 * la prioridad.
+	 */
 	public void vectorQueue(){
 		try{
 			VectorHeap<Paciente> pQueue = new VectorHeap<Paciente>();
