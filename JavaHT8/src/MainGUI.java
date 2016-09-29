@@ -26,6 +26,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
 
 /**
  * Ejecuta la aplicacion. Crea el programa para gestionar la atencion de la emergencia de un Hospital.
@@ -55,7 +58,43 @@ public class MainGUI extends JFrame {
 		
 		/* JFrame */
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 400);
+		setBounds(100, 100, 500, 425);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnInformacion = new JMenu("Informacion");
+		menuBar.add(mnInformacion);
+		
+		JMenuItem mntmAyuda = new JMenuItem("Ayuda");
+		mntmAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "1. Para cargar el archivo de pacientes de click en el boton 'Cargar Fichas'. "
+						+ "\n2. Seleccione la implementacion de la PriorityQueue que desea utilizar. Puede elegir entre la del JCF \no una implementación basada en Vector. "
+						+ "\n3. Para mostrar el listado de pacientes en orden de prioridad de click en el boton 'Mostrar prioridad de atencion'"
+						+ "\n4. Se le proporcionan dos ejemplos de archivos de texto: 'pacientes.txt' y 'pacientes2.txt' \nNote que la forma correcta de agregar pacientes al archivo es mediante la separacion de coma y un espacio."
+						, "Como utilizar el programa.", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		mnInformacion.add(mntmAyuda);
+		
+		JMenuItem mntmAbout = new JMenuItem("About");
+		mntmAbout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "2016. Gabriel Brolo, Jose Luis Mendez. \nAlgoritmos y Estructuras de datos. UVG."
+						, "Sobre 'El Hospital de Mancos'", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		mnInformacion.add(mntmAbout);
+		
+		JMenuItem mntmGit = new JMenuItem("Git");
+		mntmGit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "https://github.com/gbrolo/Hospital-UVG.git"
+						, "Git", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		mnInformacion.add(mntmGit);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
