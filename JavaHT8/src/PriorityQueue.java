@@ -1,4 +1,9 @@
 /**
+ * 
+ * 
+ * VOLVIMOS A ENVIAR LA HOJA DE TRABAJO 8 PORQUE HABIA UN ERROR EN EL JAVA DOC ESTA VERSION YA ESTA CORREGIDA
+ * 
+ * https://github.com/gbrolo/Hospital-UVG.git
  * Interfaz de una Cola con prioridad. Basada en el libro Java Structures. Define las caracteristicas basicas de
  * una cola con prioridad utilizando Heaps, para ser mas especifico, de un MinHeap.
  * 

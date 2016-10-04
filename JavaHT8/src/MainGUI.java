@@ -31,9 +31,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 
 /**
+ * VOLVIMOS A ENVIAR LA HOJA DE TRABAJO 8 PORQUE HABIA UN ERROR EN EL JAVA DOC ESTA VERSION YA ESTA CORREGIDA
+ * 
+ * https://github.com/gbrolo/Hospital-UVG.git
+ * 
+ * 
  * Ejecuta la aplicacion. Crea el programa para gestionar la atencion de la emergencia de un Hospital.
  * Permite cargar un archivo de texto con las fichas de cada paciente, para luego determinar el orden
  * de atencion de los mismos de acuerdo a su situacion.
+ * 
+ * 
  * 
  * @author Gabriel Brolo 15105, Jose Luis Mendez 15024
  * @version 1.0.0

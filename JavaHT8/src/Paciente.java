@@ -1,5 +1,12 @@
 /**
+ * VOLVIMOS A ENVIAR LA HOJA DE TRABAJO 8 PORQUE HABIA UN ERROR EN EL JAVA DOC ESTA VERSION YA ESTA CORREGIDA
+ * 
+ * https://github.com/gbrolo/Hospital-UVG.git
+ * 
+ * 
+ * 
  * Define las caracteristicas de un Paciente del hospital: nombre, enfermedad y la prioridad de atencion.
+ * 
  * 
  * @author Gabriel Brolo 15105, Jose Luis Mendez 15024
  * @version 1.0.0

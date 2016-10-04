@@ -1,6 +1,12 @@
 import java.util.Vector;
 
 /**
+ * 
+ * VOLVIMOS A ENVIAR LA HOJA DE TRABAJO 8 PORQUE HABIA UN ERROR EN EL JAVA DOC ESTA VERSION YA ESTA CORREGIDA
+ * 
+ * https://github.com/gbrolo/Hospital-UVG.git
+ * 
+ * 
  * Implementa una cola con prioridad utilizando un Vector<E> para guardar los datos e implementando un MinHeap.
  * Basado en el libro Java Structures.
  * 
